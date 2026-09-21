@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feliz 21 de Septiembre 🌻</title>
+
+<!--
+  ============================================================
+   CÓMO PERSONALIZAR
+  ============================================================
+  1) FOTOS: crea una carpeta llamada "fotos" al lado de este
+     archivo y pon tus imágenes como: 1.jpg, 2.jpg ... 6.jpg
+     (si alguna falta, se muestra un fondo amarillo bonito)
+
+  2) MÚSICA: pon tu canción como "musica.mp3" al lado de este
+     archivo. Puedes cambiar el título en el reproductor abajo.
+
+  3) TEXTOS: busca los comentarios "EDITA AQUÍ" y cambia los
+     nombres y mensajes por los tuyos.
+  ============================================================
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500;1,600&family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ============ BASE ============ */
+:root{
+  --yellow:      #F7C948;
+  --yellow-deep: #E0A500;
+  --yellow-soft: #FFF1BC;
+  --cream:       #FFFCF3;
+  --ink:         #3A3320;
+  --ink-soft:    #7A7055;
+  --white:       #ffffff;
+}
+
+*{ margin:0; padding:0; box-sizing:border-box; }
+
+html{ scroll-behavior:smooth; }
+
+body{
+  font-family:'Quicksand', system-ui, sans-serif;
+  color:var(--ink);
+  background:
+    radial-gradient(circle at 15% 0%,  #FFFAE0 0%, transparent 55%),
+    radial-gradient(circle at 85% 15%, #FFF3CC 0%, transparent 50%),
+    linear-gradient(180deg, #FFFCF3 0%, #FFF8E4 50%, #FFFCF3 100%);
+  overflow-x:hidden;
+  min-height:100vh;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ============ PÉTALOS CAYENDO ============ */
+.petals{
+  position:fixed; inset:0;
+  pointer-events:none;
+  z-index:0;
+  overflow:hidden;
+}
+.petal{
+  position:absolute;
+  top:-12vh;
+  background:linear-gradient(140deg, #FFE894, #F7C948 55%, #E0A500);
+  border-radius:50% 0 50% 0;
+  animation-name:fall;
+  animation-timing-function:linear;
+  animation-iteration-count:infinite;
+  filter:drop-shadow(0 2px 4px rgba(200,150,0,.18));
+  will-change:transform;
+}
+@keyframes fall{
+  0%  { transform:translate(0,0) rotate(0deg); }
+  50% { transform:translate(var(--sway), 60vh) rotate(320deg); }
+  100%{ transform:translate(calc(var(--sway) * -0.4), 125vh) rotate(680deg); }
+}
+
+/* ============ CONTENIDO ============ */
+main, header, footer{ position:relative; z-index:2; }
+
+/* ============ HERO ============ */
+.hero{
+  min-height:100svh;
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  text-align:center;
+  padding:5rem 1.5rem 6rem;
+  position:relative;
+}
+.hero::before{
+  content:'';
+  position:absolute;
+  width:min(90vw, 620px); height:min(90vw, 620px);
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(247,201,72,.28) 0%, rgba(247,201,72,0) 68%);
+  animation:pulse 7s ease-in-out infinite;
+  z-index:-1;
+}
+@keyframes pulse{
+  0%,100%{ transform:scale(1);   opacity:.85; }
+  50%    { transform:scale(1.12); opacity:.55; }
+}
+
+.eyebrow{
+  display:inline-block;
+  font-size:.78rem;
+  font-weight:700;
+  letter-spacing:.32em;
+  text-transform:uppercase;
+  color:var(--yellow-deep);
+  background:rgba(255,255,255,.75);
+  border:1.5px solid var(--yellow-soft);
+  padding:.5rem 1.3rem;
+  border-radius:100px;
+  margin-bottom:1.8rem;
+  backdrop-filter:blur(6px);
+}
+
+.hero h1{
+  font-family:'Playfair Display', serif;
+  font-weight:700;
+  font-size:clamp(2.4rem, 8vw, 5rem);
+  line-height:1.06;
+  letter-spacing:-.02em;
+}
+.hero h1 em{
+  font-style:italic;
+  font-weight:500;
+  color:var(--yellow-deep);
+  position:relative;
+}
+.hero h1 em::after{
+  content:'';
+  position:absolute;
+  left:-2%; right:-2%; bottom:.06em;
+  height:.28em;
+  background:linear-gradient(90deg, rgba(247,201,72,0), rgba(247,201,72,.55), rgba(247,201,72,0));
+  border-radius:50%;
+  z-index:-1;
+}
+
+.flower-row{
+  font-size:clamp(1.4rem, 4vw, 2rem);
+  margin:1.6rem 0 1.2rem;
+  letter-spacing:.35em;
+  animation:swayRow 4s ease-in-out infinite;
+}
+@keyframes swayRow{
+  0%,100%{ transform:translateY(0) rotate(-1.5deg); }
+  50%    { transform:translateY(-8px) rotate(1.5deg); }
+}
+
+.hero-text{
+  font-size:clamp(1rem, 2.4vw, 1.22rem);
+  color:var(--ink-soft);
+  max-width:34ch;
+  line-height:1.7;
+  font-weight:400;
+}
+
+.btn{
+  display:inline-block;
+  margin-top:2.4rem;
+  padding:.95rem 2.2rem;
+  font-family:'Quicksand', sans-serif;
+  font-size:.98rem;
+  font-weight:600;
+  color:var(--ink);
+  background:var(--white);
+  border:2px solid var(--yellow);
+  border-radius:100px;
+  text-decoration:none;
+  cursor:pointer;
+  transition:all .3s cubic-bezier(.2,.8,.3,1);
+  box-shadow:0 8px 22px -10px rgba(224,165,0,.55);
+}
+.btn:hover{
+  background:var(--yellow);
+  transform:translateY(-3px);
+  box-shadow:0 14px 30px -10px rgba(224,165,0,.7);
+}
+.btn:active{ transform:translateY(-1px); }
+
+.scroll-hint{
+  position:absolute;
+  bottom:2.2rem; left:50%;
+  transform:translateX(-50%);
+  font-size:1.4rem;
+  color:var(--yellow-deep);
+  animation:bounce 2.2s ease-in-out infinite;
+  opacity:.75;
+}
+@keyframes bounce{
+  0%,100%{ transform:translate(-50%, 0); }
+  50%    { transform:translate(-50%, 10px); }
+}
+
+/* ============ SECCIONES ============ */
+.section{
+  padding:clamp(4rem, 10vw, 7rem) 1.5rem;
+  max-width:1150px;
+  margin:0 auto;
+}
+
+.section-title{
+  font-family:'Playfair Display', serif;
+  font-size:clamp(1.8rem, 5vw, 2.9rem);
+  font-weight:700;
+  text-align:center;
+  letter-spacing:-.01em;
+  margin-bottom:.7rem;
+}
+.section-sub{
+  text-align:center;
+  color:var(--ink-soft);
+  font-size:1rem;
+  margin-bottom:clamp(2.5rem, 6vw, 4rem);
+  font-weight:400;
+}
+
+/* ============ GALERÍA POLAROID ============ */
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(210px, 1fr));
+  gap:clamp(1.5rem, 4vw, 2.6rem);
+  align-items:start;
+}
+
+.polaroid{
+  background:var(--white);
+  padding:11px 11px 0;
+  border-radius:12px;
+  box-shadow:
+    0 12px 32px -14px rgba(180,140,20,.42),
+    0 2px 6px rgba(0,0,0,.04);
+  transform:rotate(var(--rot, 0deg));
+  transition:transform .45s cubic-bezier(.2,.8,.3,1), box-shadow .45s;
+}
+.polaroid:hover{
+  transform:rotate(0deg) translateY(-9px) scale(1.03);
+  box-shadow:0 26px 50px -18px rgba(180,140,20,.55);
+  z-index:5;
+}
+
+.photo{
+  position:relative;
+  aspect-ratio:4/5;
+  border-radius:7px;
+  overflow:hidden;
+  background:linear-gradient(135deg, #FFF1BC, #F7C948 55%, #E0A500);
+  display:grid;
+  place-items:center;
+}
+.photo .ph{
+  font-size:2.6rem;
+  opacity:.55;
+  filter:saturate(.9);
+}
+.photo img{
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+.polaroid figcaption{
+  padding:14px 6px 16px;
+  text-align:center;
+  font-size:.88rem;
+  font-weight:500;
+  color:var(--ink-soft);
+  line-height:1.4;
+}
+
+/* ============ CARTA ============ */
+.letter{
+  max-width:730px;
+  margin:0 auto;
+  background:var(--white);
+  border:1px solid var(--yellow-soft);
+  border-radius:26px;
+  padding:clamp(2.2rem, 6vw, 4rem);
+  box-shadow:0 34px 70px -34px rgba(180,140,20,.45);
+  position:relative;
+  overflow:hidden;
+}
+.letter::before{
+  content:'';
+  position:absolute;
+  top:0; left:0; right:0;
+  height:6px;
+  background:linear-gradient(90deg, var(--yellow-soft), var(--yellow), var(--yellow-deep), var(--yellow), var(--yellow-soft));
+}
+.letter::after{
+  content:'🌻';
+  position:absolute;
+  top:-18px; right:-14px;
+  font-size:6rem;
+  opacity:.07;
+  transform:rotate(18deg);
+}
+
+.letter h2{
+  font-family:'Playfair Display', serif;
+  font-size:clamp(1.6rem, 4.4vw, 2.2rem);
+  font-weight:700;
+  margin-bottom:1.6rem;
+  color:var(--ink);
+}
+
+.letter p{
+  font-size:clamp(1rem, 2.3vw, 1.08rem);
+  line-height:1.9;
+  color:#524a35;
+  margin-bottom:1.25rem;
+  font-weight:400;
+}
+.letter p strong{
+  color:var(--yellow-deep);
+  font-weight:700;
+}
+
+.signature{
+  margin-top:2.2rem !important;
+  font-family:'Playfair Display', serif;
+  font-style:italic;
+  font-size:1.15rem !important;
+  color:var(--ink) !important;
+  text-align:right;
+  line-height:1.6 !important;
+}
+
+/* ============ RAZONES ============ */
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(230px, 1fr));
+  gap:1.5rem;
+}
+.card{
+  background:rgba(255,255,255,.82);
+  backdrop-filter:blur(8px);
+  border:1.5px solid var(--yellow-soft);
+  border-radius:22px;
+  padding:2rem 1.6rem;
+  text-align:center;
+  transition:transform .35s cubic-bezier(.2,.8,.3,1), box-shadow .35s, border-color .35s;
+}
+.card:hover{
+  transform:translateY(-7px);
+  border-color:var(--yellow);
+  box-shadow:0 22px 44px -22px rgba(224,165,0,.6);
+}
+.card .icon{
+  font-size:2.1rem;
+  display:block;
+  margin-bottom:1rem;
+}
+.card h3{
+  font-family:'Playfair Display', serif;
+  font-size:1.15rem;
+  font-weight:700;
+  margin-bottom:.6rem;
+}
+.card p{
+  font-size:.92rem;
+  line-height:1.65;
+  color:var(--ink-soft);
+}
+
+/* ============ FINAL ============ */
+.final{
+  text-align:center;
+  padding:clamp(4rem, 10vw, 7rem) 1.5rem clamp(7rem, 14vw, 9rem);
+}
+.final h2{
+  font-family:'Playfair Display', serif;
+  font-size:clamp(1.7rem, 5vw, 2.8rem);
+  font-weight:700;
+  margin-bottom:1rem;
+  line-height:1.2;
+}
+.final p{
+  color:var(--ink-soft);
+  font-size:1.05rem;
+  max-width:34ch;
+  margin:0 auto 2.2rem;
+  line-height:1.75;
+}
+.btn-solid{
+  background:linear-gradient(135deg, var(--yellow), var(--yellow-deep));
+  border-color:transparent;
+  color:#4a3c00;
+  font-weight:700;
+  box-shadow:0 12px 28px -12px rgba(224,165,0,.9);
+}
+.btn-solid:hover{
+  background:linear-gradient(135deg, #FFD75E, var(--yellow-deep));
+  box-shadow:0 18px 36px -14px rgba(224,165,0,1);
+}
+
+/* ============ FLORES AL CLICK ============ */
+.float-flower{
+  position:fixed;
+  bottom:8vh;
+  z-index:999;
+  pointer-events:none;
+  animation:floatUp 4.2s cubic-bezier(.25,.6,.4,1) forwards;
+}
+@keyframes floatUp{
+  0%  { transform:translateY(0) scale(.3) rotate(0deg);      opacity:0; }
+  18% { transform:translateY(-8vh) scale(1.05) rotate(8deg); opacity:1; }
+  100%{ transform:translateY(-92vh) scale(1.15) rotate(-25deg); opacity:0; }
+}
+
+/* ============ REPRODUCTOR ============ */
+.player{
+  position:fixed;
+  bottom:1.4rem; left:50%;
+  transform:translateX(-50%);
+  z-index:100;
+  display:flex;
+  align-items:center;
+  gap:.9rem;
+  padding:.6rem 1.3rem .6rem .6rem;
+  background:rgba(255,255,255,.82);
+  backdrop-filter:blur(16px) saturate(1.4);
+  -webkit-backdrop-filter:blur(16px) saturate(1.4);
+  border:1.5px solid rgba(247,201,72,.6);
+  border-radius:100px;
+  box-shadow:0 14px 40px -14px rgba(180,140,20,.55);
+  max-width:calc(100vw - 2rem);
+}
+
+.play-btn{
+  width:48px; height:48px;
+  flex-shrink:0;
+  border:none;
+  border-radius:50%;
+  background:linear-gradient(135deg, var(--yellow), var(--yellow-deep));
+  color:#4a3c00;
+  display:grid;
+  place-items:center;
+  cursor:pointer;
+  transition:transform .25s cubic-bezier(.2,.8,.3,1), box-shadow .25s;
+  box-shadow:0 6px 16px -6px rgba(224,165,0,.9);
+}
+.play-btn:hover{ transform:scale(1.09); }
+.play-btn:active{ transform:scale(.95); }
+.play-btn svg{ width:19px; height:19px; fill:currentColor; }
+.play-btn .icon-pause{ display:none; }
+body.playing .play-btn .icon-play{ display:none; }
+body.playing .play-btn .icon-pause{ display:block; }
+
+.player-info{
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+  min-width:0;
+  padding-right:.3rem;
+}
+.song-title{
+  font-size:.87rem;
+  font-weight:700;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  max-width:190px;
+}
+.song-sub{
+  font-size:.72rem;
+  color:var(--ink-soft);
+  font-weight:500;
+  white-space:nowrap;
+}
+
+.bars{
+  display:flex;
+  align-items:flex-end;
+  gap:3px;
+  height:22px;
+  margin-left:.2rem;
+}
+.bars i{
+  display:block;
+  width:3px;
+  height:22%;
+  border-radius:3px;
+  background:linear-gradient(180deg, var(--yellow), var(--yellow-deep));
+  transition:height .3s;
+}
+body.playing .bars i{ animation:eq .95s ease-in-out infinite; }
+body.playing .bars i:nth-child(2){ animation-delay:.14s; }
+body.playing .bars i:nth-child(3){ animation-delay:.28s; }
+body.playing .bars i:nth-child(4){ animation-delay:.42s; }
+@keyframes eq{
+  0%,100%{ height:22%; }
+  50%    { height:100%; }
+}
+
+/* ============ TOAST ============ */
+.toast{
+  position:fixed;
+  bottom:6.5rem; left:50%;
+  transform:translate(-50%, 20px);
+  background:rgba(58,51,32,.94);
+  color:#FFF1BC;
+  font-size:.85rem;
+  font-weight:500;
+  padding:.8rem 1.4rem;
+  border-radius:100px;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .35s, transform .35s;
+  z-index:200;
+  max-width:calc(100vw - 2.5rem);
+  text-align:center;
+  line-height:1.5;
+}
+.toast.show{
+  opacity:1;
+  transform:translate(-50%, 0);
+}
+
+/* ============ REVEAL ============ */
+.reveal{
+  opacity:0;
+  transform:translateY(32px);
+  transition:opacity .9s ease, transform .9s cubic-bezier(.2,.8,.3,1);
+}
+.reveal.visible{
+  opacity:1;
+  transform:none;
+}
+
+/* ============ FOOTER ============ */
+footer{
+  text-align:center;
+  padding:0 1.5rem 8rem;
+  font-size:.82rem;
+  color:var(--ink-soft);
+  font-weight:500;
+  letter-spacing:.02em;
+}
+footer span{ color:var(--yellow-deep); }
+
+/* ============ RESPONSIVE ============ */
+@media (max-width:600px){
+  .player{ padding:.5rem 1rem .5rem .5rem; gap:.7rem; }
+  .play-btn{ width:44px; height:44px; }
+  .song-title{ max-width:120px; font-size:.8rem; }
+  .bars{ display:none; }
+  .gallery{ grid-template-columns:repeat(auto-fit, minmax(150px, 1fr)); gap:1.2rem; }
+  .polaroid figcaption{ font-size:.78rem; padding:10px 4px 12px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Pétalos cayendo -->
+<div class="petals" aria-hidden="true"></div>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <p class="eyebrow">21 de septiembre</p>
+
+  <!-- EDITA AQUÍ el título principal -->
+  <h1>Feliz Día de la<br><em>Amistad</em></h1>
+
+  <div class="flower-row" aria-hidden="true">🌻 🌼 🌻</div>
+
+  <!-- EDITA AQUÍ la frase del inicio -->
+  <p class="hero-text">
+    Para la persona que hace que hasta los días grises
+    tengan un poquito de amarillo.
+  </p>
+
+  <a href="#galeria" class="btn">Ver tu Camino</a>
+
+  <div class="scroll-hint" aria-hidden="true">↓</div>
+</header>
+
+<main>
+
+  <!-- ============ GALERÍA ============ -->
+  <section id="galeria" class="section">
+    <h2 class="section-title reveal">Tú Camino</h2>
+    <p class="section-sub reveal">Un recorrido por esas etapas que te han ido formando en la persona tan especial que eres hoy.</p>
+
+    <div class="gallery">
+
+      <!-- EDITA AQUÍ: cambia "fotos/1.jpg" por tus fotos y el texto de abajo -->
+      <div class="reveal">
+        <figure class="polaroid" style="--rot:-3deg;">
+          <div class="photo">
+            <span class="ph">🌼</span>
+            <img src="fotos/1.jpg" alt="" onerror="this.style.display='none'">
+          </div>
+          <figcaption>Todo gran camino empieza con un uniforme, una mochila y mil sueños por descubrir. El tiempo pasó volando, pero qué bonito es mirar atrás y ver a esa niña que aún no sabía todo lo increíble que le esperaba.
+
+</figcaption>
+        </figure>
+      </div>
+
+      <div class="reveal">
+        <figure class="polaroid" style="--rot:2.5deg;">
+          <div class="photo">
+            <span class="ph">🌻</span>
+            <img src="fotos/2.jpg" alt="" 
+                style="object-position: top;"
+                onerror="this.style.display='none'">
+          </div>
+          <figcaption>Y sin darte cuenta, esa niña empezó a crecer. La misma mirada, la misma esencia, pero con una presencia que ya se hacía notar. Ahí, frente al espejo, empezabas a descubrir a la mujer en la que te estabas convirtiendo.</figcaption>
+        </figure>
+      </div>
+
+      <div class="reveal">
+        <figure class="polaroid" style="--rot:-2deg;">
+          <div class="photo">
+            <span class="ph">💛</span>
+            <img src="fotos/3.jpg" alt="" onerror="this.style.display='none'">
+          </div>
+          <figcaption>Porque crecer no siempre es serio. A veces es reír sin miedo, ser un poquito rebelde y dejar que la alegría haga lo suyo. Esa chispa que se te escapa cuando ríes… nunca se te apagó. Y menos mal, porque es una de las mejores cosas que tienes.
+
+</figcaption>
+        </figure>
+      </div>
+
+      <div class="reveal">
+        <figure class="polaroid" style="--rot:3.5deg;">
+          <div class="photo">
+            <span class="ph">🌼</span>
+            <img src="fotos/4.jpg" alt="" onerror="this.style.display='none'">
+          </div>
+          <figcaption>Y llegó el momento en que decidiste cuidarte, no por vanidad, sino por amor propio. Ahí, frente al espejo del gym, no se ve la máquina ni las pesas, pero se ve lo más importante: una voluntad de hierro y la fortaleza de alguien que sabe que la constancia es el mejor regalo que se puede dar a sí misma. Porque quererte también es disciplina, y tú lo entendiste perfecto.</figcaption>
+        </figure>
+      </div>
+
+      <div class="reveal">
+        <figure class="polaroid" style="--rot:-2.8deg;">
+          <div class="photo">
+            <span class="ph">🌻</span>
+            <img src="fotos/5.jpg" alt="" onerror="this.style.display='none'">
+          </div>
+          <figcaption>Y entre tantas versiones tuyas, hay una que brilla distinto: la que sonríe sin filtros, sin poses, sin buscar nada. Esa sonrisa tuya es tu mejor arma ante esta vida, porque ilumina, contagia y sana. Nunca dejes de sonreír así, porque cuando lo haces, le recuerdas al mundo —y a quien tenga la suerte de verte— que eres alguien verdaderamente especial.</figcaption>
+        </figure>
+      </div>
+
+      <div class="reveal">
+        <figure class="polaroid" style="--rot:2deg;">
+          <div class="photo">
+            <span class="ph">🌷</span>
+            <img src="fotos/6.jpg" alt="" onerror="this.style.display='none'">
+          </div>
+          <figcaption>Y aquí estás: con ese uniforme que no es solo tela, es vocación. Esa casaca cian guarda horas de estudio, esfuerzo y sueños que un día empezaron pequeños. Hoy ya tienes tu bachiller, y eso no es poca cosa: es la prueba viviente de que cuando te propones algo, lo logras. Tacna tiene el orgullo de formarte, y tú tienes el corazón de sanar.</figcaption>
+        </figure>
+      </div>
+
+      <div class="reveal">
+        <figure class="polaroid" style="--rot:2deg;">
+          <div class="photo">
+            <span class="ph">🌷</span>
+            <img src="fotos/7.jpg" alt="" onerror="this.style.display='none'">
+          </div>
+          <figcaption>Pero no todo ha sido fácil, y tú lo sabes. Esa mirada madura, seria, profunda… habla de noches de estudio, de días largos, de una mujer que ya no es la niña del uniforme escolar, sino alguien que sabe lo que quiere y está dispuesta a trabajar por ello. La madurez te queda bien, porque no es fría: es sabia.</figcaption>
+        </figure>
+      </div>
+
+      <div class="reveal">
+        <figure class="polaroid" style="--rot:2.5deg;">
+          <div class="photo">
+            <span class="ph">🌻</span>
+            <img src="fotos/8.jpg" alt="" 
+                style="object-position: top;"
+                onerror="this.style.display='none'">
+          </div>
+          <figcaption>Y aun con todo el peso de la responsabilidad, ahí está esa coquetería tuya, esa sonrisa que aparece justo cuando más se necesita. Porque ser profesional no significa dejar de ser tú: significa que ahora eres una mujer que estudia, que sueña, que se cuida, que ríe y que además se está cumpliendo. Y eso, querida amiga, es lo más bonito de verte crecer.</figcaption>
+        </figure>
+      </div>
+
+    </div>
+  </section>
+
+<!-- ============ CARTA ============ -->
+  <section class="section">
+    <div class="letter reveal">
+      <h2>Para ti 🌻</h2>
+
+      <!-- EDITA AQUÍ tu carta -->
+      <p>
+        Este 21 de septiembre no te regalo flores amarillas cualquiera:
+        te regalo un pedacito de tu propio camino. Porque mirar atrás y
+        verte crecer es el mejor regalo que puedo darte hoy.
+      </p>
+
+      <p>
+        Te regalo a esa niña del uniforme escolar que soñaba sin saber
+        todo lo increíble que le esperaba. Te regalo a esa joven que
+        descubrió su fuerza frente al espejo. Te regalo a esa mujer
+        constante que se cuida, que sonríe y que hace de su alegría
+        un arma ante la vida.
+      </p>
+
+      <p>
+        Y sobre todo, te regalo a esa que hoy lleva con orgullo todo lo
+        que ha logrado, porque <strong>ya tienes tu bachiller</strong>
+        y eso no es poca cosa: es la prueba viviente de que cuando te
+        propones algo, lo logras.
+      </p>
+
+      <p>
+        Gracias por ser esa persona que hace que hasta los días grises
+        tengan un poquito de amarillo. Que este año sigas sumando fotos,
+        canciones, logros y primaveras. Y que nunca se te olvide lo
+        especial que eres.
+      </p>
+
+      <p class="signature">
+        Con cariño,<br>
+        — Crow 💛
+      </p>
+    </div>
+  </section>
+
+
+
+  <!-- ============ CIERRE ============ -->
+  <section class="final">
+    <h2 class="reveal">Gracias por ser mi amiga 🌻</h2>
+    <p class="reveal">Que nunca te falten flores amarillas, ni motivos para sonreír.</p>
+    <button id="flowerBtn" class="btn btn-solid reveal">Lanzar flores 💛</button>
+  </section>
+
+</main>
+
+<footer>
+  Hecho con cariño para el <span>21 de septiembre</span> · Feliz Primavera 🌼
+</footer>
+
+<!-- ============ REPRODUCTOR ============ -->
+<audio id="song" src="musica.mp3" loop preload="none"></audio>
+
+<div class="player">
+  <button class="play-btn" id="playBtn" aria-label="Reproducir música">
+    <svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+    <svg class="icon-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+  </button>
+
+  <div class="player-info">
+    <!-- EDITA AQUÍ el nombre de la canción -->
+    <span class="song-title">Un detalle amarillo</span>
+    <span class="song-sub" id="songSub">Dale play 🌻</span>
+  </div>
+
+  <div class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ============================================================
+   1. PÉTALOS CAYENDO
+   ============================================================ */
+(function createPetals(){
+  const container = document.querySelector('.petals');
+  const total = window.innerWidth < 600 ? 12 : 20;
+
+  for (let i = 0; i < total; i++){
+    const p = document.createElement('div');
+    p.className = 'petal';
+
+    const size = 9 + Math.random() * 16;
+    p.style.width  = size + 'px';
+    p.style.height = (size * 1.15) + 'px';
+    p.style.left   = (Math.random() * 100) + 'vw';
+    p.style.opacity = (0.3 + Math.random() * 0.5).toFixed(2);
+    p.style.setProperty('--sway', (Math.random() * 110 - 55).toFixed(0) + 'px');
+    p.style.animationDuration = (9 + Math.random() * 11).toFixed(1) + 's';
+    p.style.animationDelay = (-Math.random() * 20).toFixed(1) + 's';
+
+    container.appendChild(p);
+  }
+})();
+
+/* ============================================================
+   2. REVEAL AL HACER SCROLL
+   ============================================================ */
+(function revealOnScroll(){
+  const items = document.querySelectorAll('.reveal');
+
+  if (!('IntersectionObserver' in window)){
+    items.forEach(el => el.classList.add('visible'));
+    return;
+  }
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting){
+        setTimeout(() => entry.target.classList.add('visible'), i * 90);
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+
+  items.forEach(el => io.observe(el));
+})();
+
+/* ============================================================
+   3. REPRODUCTOR DE MÚSICA
+   ============================================================ */
+(function musicPlayer(){
+  const audio   = document.getElementById('song');
+  const playBtn = document.getElementById('playBtn');
+  const sub     = document.getElementById('songSub');
+  const toastEl = document.getElementById('toast');
+  let toastTimer;
+
+  function toast(msg){
+    toastEl.textContent = msg;
+    toastEl.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toastEl.classList.remove('show'), 4500);
+  }
+
+  playBtn.addEventListener('click', () => {
+    if (audio.paused){
+      const attempt = audio.play();
+      if (attempt !== undefined){
+        attempt.catch(() => {
+          toast('🎵 Agrega tu canción como "musica.mp3" en la misma carpeta.');
+        });
+      }
+    } else {
+      audio.pause();
+    }
+  });
+
+  audio.addEventListener('play', () => {
+    document.body.classList.add('playing');
+    sub.textContent = 'Sonando ahora 🌻';
+  });
+
+  audio.addEventListener('pause', () => {
+    document.body.classList.remove('playing');
+    sub.textContent = 'Dale play 🌻';
+  });
+
+  audio.addEventListener('error', () => {
+    document.body.classList.remove('playing');
+    sub.textContent = 'Falta la canción';
+  });
+})();
+
+/* ============================================================
+   4. LLUVIA DE FLORES
+   ============================================================ */
+(function flowerShower(){
+  const btn = document.getElementById('flowerBtn');
+  const emojis = ['🌻', '🌼', '💛', '🌷', '✨'];
+
+  function spawnFlower(){
+    const f = document.createElement('div');
+    f.className = 'float-flower';
+    f.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    f.style.left = (8 + Math.random() * 84) + 'vw';
+    f.style.fontSize = (20 + Math.random() * 26).toFixed(0) + 'px';
+    f.style.animationDuration = (3.4 + Math.random() * 1.6).toFixed(1) + 's';
+    document.body.appendChild(f);
+    setTimeout(() => f.remove(), 5200);
+  }
+
+  btn.addEventListener('click', () => {
+    for (let i = 0; i < 16; i++){
+      setTimeout(spawnFlower, i * 85);
+    }
+  });
+})();
+
+/* ============================================================
+   5. CORAZÓN AL HACER CLIC (detalle extra)
+   ============================================================ */
+document.addEventListener('click', (e) => {
+  if (e.target.closest('button, a')) return;
+
+  const heart = document.createElement('div');
+  heart.textContent = '💛';
+  heart.style.cssText = `
+    position:fixed;
+    left:${e.clientX}px;
+    top:${e.clientY}px;
+    font-size:20px;
+    pointer-events:none;
+    z-index:998;
+    transform:translate(-50%,-50%);
+    animation:floatUp 1.8s ease-out forwards;
+  `;
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 1900);
+});
+</script>
+
+</body>
+</html>
